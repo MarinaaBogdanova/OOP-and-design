@@ -19,8 +19,7 @@ public class Radio {
     public void next() {
         if (currentRadioStation < 9) {
             currentRadioStation++;
-        }
-        else {
+        } else {
             currentRadioStation = 0;
         }
     }
