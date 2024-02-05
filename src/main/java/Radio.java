@@ -1,6 +1,17 @@
 public class Radio {
     private int currentRadioStation;
     private int currentVolume;
+    private int maxStation;
+    private int minVolume = 0;
+    private int maxVolume = 100;
+
+    public Radio() {
+        this.maxStation = 9;
+    }
+
+    public Radio(int radioStations) {
+        this.maxStation = radioStations - 1;
+    }
 
     public int getCurrentRadioStation() {
         return currentRadioStation;
@@ -10,14 +21,14 @@ public class Radio {
         if (CurrentRadioStation < 0) {
             return;
         }
-        if (CurrentRadioStation > 9) {
+        if (CurrentRadioStation > maxStation) {
             return;
         }
         this.currentRadioStation = CurrentRadioStation;
     }
 
     public void next() {
-        if (currentRadioStation < 9) {
+        if (currentRadioStation < maxStation) {
             currentRadioStation++;
         } else {
             currentRadioStation = 0;
@@ -26,28 +37,29 @@ public class Radio {
 
     public void prev() {
         if (currentRadioStation == 0) {
-            currentRadioStation = 9;
+            currentRadioStation = maxStation;
         } else {
             currentRadioStation--;
         }
     }
 
     public int getCurrentVolume() {
+
         return currentVolume;
     }
 
     public void setCurrentVolume(int currentVolume) {
-        if (currentVolume < 0) {
+        if (currentVolume < minVolume) {
             return;
         }
-        if (currentVolume > 100) {
+        if (currentVolume > maxVolume) {
             return;
         }
         this.currentVolume = currentVolume;
     }
 
     public void increaseVolume() {
-        if (currentVolume == 100) {
+        if (currentVolume == maxVolume) {
             currentVolume = 0;
         } else {
             currentVolume++;
@@ -55,7 +67,7 @@ public class Radio {
     }
 
     public void decreaseVolume() {
-        if (currentVolume == 0) {
+        if (currentVolume == minVolume) {
             currentVolume = 0;
         } else {
             currentVolume--;
